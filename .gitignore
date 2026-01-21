@@ -1,0 +1,23 @@
+# Runtime & Cache
+cache/
+paste-cache/
+file-history/
+shell-snapshots/
+session-env/
+debug/
+ide/
+statsig/
+telemetry/
+todos/
+plugins/
+projects/
+
+# History & Stats
+history.jsonl
+stats-cache.json
+*.log
+
+# Local settings overrides
+settings.local.json
+*.local.json
+*.local.md
