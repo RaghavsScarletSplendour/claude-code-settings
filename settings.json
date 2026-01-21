@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Ls:*",
+      "Cd:*",
+      "Bash(cd:*)"
+    ]
+  },
+  "enabledPlugins": {
+    "ralph-wiggum@claude-plugins-official": true,
+    "glass@claude-code-notify": true,
+    "cartographer@cartographer-marketplace": true
+  }
+}
