@@ -11,6 +11,7 @@ telemetry/
 todos/
 plugins/
 projects/
+plans/
 
 # History & Stats
 history.jsonl
