@@ -1,6 +1,7 @@
 {
   "permissions": {
     "allow": [
+      "Read:*",
       "Ls:*",
       "Cd:*",
       "Bash(cd:*)"
@@ -9,6 +10,8 @@
   "enabledPlugins": {
     "ralph-wiggum@claude-plugins-official": true,
     "glass@claude-code-notify": true,
-    "cartographer@cartographer-marketplace": true
+    "cartographer@cartographer-marketplace": true,
+    "ralph-loop@claude-plugins-official": false,
+    "claude-supermemory@supermemory-plugins": false
   }
 }
