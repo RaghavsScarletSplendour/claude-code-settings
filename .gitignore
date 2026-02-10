@@ -22,3 +22,8 @@ stats-cache.json
 settings.local.json
 *.local.json
 *.local.md
+
+# Private / machine-specific
+chrome/
+tasks/
+skills/china-product-researcher/references/company-info.md
