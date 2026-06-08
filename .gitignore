@@ -40,5 +40,5 @@ security_warnings_state_*.json
 .last-cleanup
 .last-update-result.json
 
-# Business-specific skill data — keep private (real supplier contacts, etc.)
-skills/whatsapp-supplier-responder/references/
+# Business-specific skill — keep fully private (workflow + real supplier contacts)
+skills/whatsapp-supplier-responder/
