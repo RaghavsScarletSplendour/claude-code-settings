@@ -1,17 +1,54 @@
 {
   "permissions": {
     "allow": [
-      "Read:*",
-      "Ls:*",
-      "Cd:*",
-      "Bash(cd:*)"
-    ]
+      "Read",
+      "Grep",
+      "Glob",
+      "Bash"
+    ],
+    "defaultMode": "auto"
   },
   "enabledPlugins": {
     "ralph-wiggum@claude-plugins-official": true,
     "glass@claude-code-notify": true,
     "cartographer@cartographer-marketplace": true,
     "ralph-loop@claude-plugins-official": false,
-    "claude-supermemory@supermemory-plugins": false
-  }
+    "claude-supermemory@supermemory-plugins": false,
+    "security-guidance@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "video-maker@renoise-plugins-official": false,
+    "warp@claude-code-warp": true,
+    "obsidian@obsidian-skills": true,
+    "linkedin-skills@linkedin-skills": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-code-warp": {
+      "source": {
+        "source": "github",
+        "repo": "warpdotdev/claude-code-warp"
+      }
+    },
+    "obsidian-skills": {
+      "source": {
+        "source": "github",
+        "repo": "kepano/obsidian-skills"
+      }
+    },
+    "linkedin-skills": {
+      "source": {
+        "source": "github",
+        "repo": "sergebulaev/linkedin-skills"
+      }
+    }
+  },
+  "effortLevel": "xhigh",
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "remoteControlAtStartup": false,
+  "agentPushNotifEnabled": true,
+  "skipAutoPermissionPrompt": true,
+  "voiceEnabled": true
 }

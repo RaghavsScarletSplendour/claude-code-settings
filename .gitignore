@@ -27,3 +27,18 @@ settings.local.json
 chrome/
 tasks/
 skills/china-product-researcher/references/company-info.md
+
+# Runtime state, backups & caches (machine-local — never commit, esp. to a public repo)
+backups/
+security/
+sessions/
+daemon/
+jobs/
+image-cache/
+gh-pr-status-cache.json
+security_warnings_state_*.json
+.last-cleanup
+.last-update-result.json
+
+# Business-specific skill data — keep private (real supplier contacts, etc.)
+skills/whatsapp-supplier-responder/references/
