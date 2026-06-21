@@ -10,7 +10,6 @@
   },
   "model": "opus[1m]",
   "enabledPlugins": {
-    "ralph-wiggum@claude-plugins-official": true,
     "glass@claude-code-notify": true,
     "cartographer@cartographer-marketplace": true,
     "ralph-loop@claude-plugins-official": false,
