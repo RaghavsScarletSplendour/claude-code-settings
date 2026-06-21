@@ -8,6 +8,7 @@
     ],
     "defaultMode": "auto"
   },
+  "model": "opus[1m]",
   "enabledPlugins": {
     "ralph-wiggum@claude-plugins-official": true,
     "glass@claude-code-notify": true,
@@ -41,7 +42,7 @@
       }
     }
   },
-  "effortLevel": "xhigh",
+  "effortLevel": "low",
   "voice": {
     "enabled": true,
     "mode": "hold"

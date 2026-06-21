@@ -42,3 +42,8 @@ security_warnings_state_*.json
 
 # Business-specific skill — keep fully private (workflow + real supplier contacts)
 skills/whatsapp-supplier-responder/
+
+# Daemon runtime state at root (machine-local)
+daemon.lock
+daemon.status.json
+uploads/
