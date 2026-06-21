@@ -28,6 +28,9 @@ chrome/
 tasks/
 skills/china-product-researcher/references/company-info.md
 
+# Retro session digests (private project detail — keep local, never commit)
+retro/
+
 # Runtime state, backups & caches (machine-local — never commit, esp. to a public repo)
 backups/
 security/
