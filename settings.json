@@ -9,6 +9,19 @@
     "defaultMode": "auto"
   },
   "model": "opus[1m]",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $HOME/.claude/hooks/sandbox-safe-shell.sh"
+          }
+        ]
+      }
+    ]
+  },
   "enabledPlugins": {
     "glass@claude-code-notify": true,
     "cartographer@cartographer-marketplace": true,
@@ -19,7 +32,9 @@
     "video-maker@renoise-plugins-official": false,
     "warp@claude-code-warp": true,
     "obsidian@obsidian-skills": true,
-    "linkedin-skills@linkedin-skills": true
+    "linkedin-skills@linkedin-skills": true,
+    "skill-creator@claude-plugins-official": true,
+    "vercel@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "claude-code-warp": {
