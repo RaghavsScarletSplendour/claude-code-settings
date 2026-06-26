@@ -37,11 +37,20 @@ reliable shortcut.
    git push -u origin HEAD
    ```
 
-5. **SSH-timeout fallback.** If push/pull fails with a connection timeout to
-   `git@github.com`, retry the same operation over HTTPS for this one command
-   rather than re-driving "try again" by hand — e.g. temporarily use
-   `https://github.com/<owner>/<repo>.git` (port 443). Report that you switched
-   transport; don't change the saved remote without asking.
+5. **SSH-timeout fallback (automatic).** If push/pull fails with an SSH connect
+   timeout to `github.com:22`, retry the **same** operation once over HTTPS (443)
+   for this command only — don't re-drive "try again" by hand, and don't change the
+   saved remote:
+   ```bash
+   git push -u origin HEAD 2>/tmp/git_err || {
+     if grep -qiE "port 22|timed out|connection timed out|could not resolve" /tmp/git_err; then
+       echo "SSH timed out — retrying over HTTPS (443) for this push only"
+       git -c url."https://github.com/".insteadOf="git@github.com:" push -u origin HEAD
+     else cat /tmp/git_err >&2; fi
+   }
+   ```
+   (Same `-c url...insteadOf` wrapper works for `pull`.) Report that you switched
+   transport; the override is per-command, so the saved remote is untouched.
 
 6. **Report honestly**: ahead/behind counts after sync, whether the push actually
    moved the remote (compare the printed old..new SHAs — a no-op push prints
