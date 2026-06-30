@@ -50,3 +50,7 @@ skills/whatsapp-supplier-responder/
 daemon.lock
 daemon.status.json
 uploads/
+
+# Machine-local sync helper & MCP auth cache (never commit)
+sync.sh
+mcp-needs-auth-cache.json
