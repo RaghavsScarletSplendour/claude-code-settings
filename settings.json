@@ -8,7 +8,7 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "opus[1m]",
+  "model": "sonnet",
   "hooks": {
     "PreToolUse": [
       {
@@ -17,6 +17,26 @@
           {
             "type": "command",
             "command": "bash $HOME/.claude/hooks/sandbox-safe-shell.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/skills/continuous-learning-v2/hooks/observe.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/skills/continuous-learning-v2/hooks/observe.sh"
           }
         ]
       }
@@ -34,7 +54,8 @@
     "obsidian@obsidian-skills": true,
     "linkedin-skills@linkedin-skills": true,
     "skill-creator@claude-plugins-official": true,
-    "vercel@claude-plugins-official": true
+    "vercel@claude-plugins-official": true,
+    "ponytail@ponytail": false
   },
   "extraKnownMarketplaces": {
     "claude-code-warp": {
@@ -54,9 +75,16 @@
         "source": "github",
         "repo": "sergebulaev/linkedin-skills"
       }
+    },
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
     }
   },
-  "effortLevel": "low",
+  "effortLevel": "medium",
+  "tui": "default",
   "voice": {
     "enabled": true,
     "mode": "hold"
