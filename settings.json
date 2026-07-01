@@ -54,8 +54,7 @@
     "obsidian@obsidian-skills": true,
     "linkedin-skills@linkedin-skills": true,
     "skill-creator@claude-plugins-official": true,
-    "vercel@claude-plugins-official": true,
-    "ponytail@ponytail": false
+    "vercel@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "claude-code-warp": {
@@ -74,12 +73,6 @@
       "source": {
         "source": "github",
         "repo": "sergebulaev/linkedin-skills"
-      }
-    },
-    "ponytail": {
-      "source": {
-        "source": "github",
-        "repo": "DietrichGebert/ponytail"
       }
     }
   },
