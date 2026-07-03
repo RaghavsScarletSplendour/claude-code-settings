@@ -8,7 +8,10 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "sonnet",
+  "model": "claude-fable-5[1m]",
+  "env": {
+    "ECC_OBSERVER_TIMEOUT_SECONDS": "300"
+  },
   "hooks": {
     "PreToolUse": [
       {
@@ -28,6 +31,34 @@
             "command": "~/.claude/skills/continuous-learning-v2/hooks/observe.sh"
           }
         ]
+      },
+      {
+        "matcher": "mcp__claude-in-chrome__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $HOME/.claude/hooks/cic-preflight-reminder.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__claude_ai_Supabase__apply_migration|mcp__claude_ai_Supabase__execute_sql",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $HOME/.claude/hooks/supabase-write-reminder.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $HOME/.claude/hooks/git-push-review-reminder.sh",
+            "if": "Bash(git push*)"
+          }
+        ]
       }
     ],
     "PostToolUse": [
@@ -43,7 +74,7 @@
     ]
   },
   "enabledPlugins": {
-    "glass@claude-code-notify": true,
+    "glass@claude-code-notify": false,
     "cartographer@cartographer-marketplace": true,
     "ralph-loop@claude-plugins-official": false,
     "claude-supermemory@supermemory-plugins": false,
@@ -76,7 +107,7 @@
       }
     }
   },
-  "effortLevel": "medium",
+  "effortLevel": "high",
   "tui": "default",
   "voice": {
     "enabled": true,
