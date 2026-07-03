@@ -10,7 +10,8 @@
   },
   "model": "claude-fable-5[1m]",
   "env": {
-    "ECC_OBSERVER_TIMEOUT_SECONDS": "300"
+    "ECC_OBSERVER_TIMEOUT_SECONDS": "300",
+    "ECC_OBSERVER_MAX_TURNS": "50"
   },
   "hooks": {
     "PreToolUse": [
