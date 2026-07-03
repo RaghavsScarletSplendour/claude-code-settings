@@ -54,3 +54,6 @@ uploads/
 # Machine-local sync helper & MCP auth cache (never commit)
 sync.sh
 mcp-needs-auth-cache.json
+
+# Skill-optimizer run output (transient build artifacts, not a skill — keep local)
+skills/search-first-workspace/
