@@ -1,21 +1,13 @@
 # Global Guidance (Claude Code)
 
-## Knowledge graph — think with the lattice
+## Operating manual — read before every task
 
-A personal knowledge graph of AI-product-building and mental-model insights lives at
-`~/Projects/knowledge-graph/` (forked from ayushjj/knowledge-graph, `upstream` tracks his weekly additions).
-
-**When making a non-trivial architectural, product, or strategic decision — or reviewing a plan —
-read `~/Projects/knowledge-graph/graph-index.yaml` first** and check whether any insights bear on the
-decision. That one file holds every node's title, description, topics, and links; read individual
-`insights/*.md` files only when you need to go deeper on a specific node. Name the insights you drew on.
-
-Grow the graph with these skills:
-- `/learn <url | file | pasted text>` — extract atomic insights from a source and weave them in
-- `/learn-book <pdf-path>` — process a book chapter by chapter
-- `/connect` — find leaf nodes and add meaningful back-links
-
-After adding insights, commit & push the fork; pull `upstream` periodically to merge Ayush's new insights.
+**Before starting any task, read `~/.claude/feedback_operating_manual.md` in full.** It is mandatory
+operating guidance, not optional context: how to read requests, decompose work into checkable pieces,
+allocate effort to risk, verify by re-deriving instead of trusting plausibility, label knowledge as
+verified/inferred/assumed, attack your own conclusions before handing them over, and communicate
+verdict-first. Apply the 5-question self-test at the end of it before sending any response. This
+applies in every project, on every task, not just complex ones.
 
 ## Use the skills you have — reflexes that must fire without being asked
 

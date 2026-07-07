@@ -1,4 +1,8 @@
 {
+  "env": {
+    "ECC_OBSERVER_TIMEOUT_SECONDS": "300",
+    "ECC_OBSERVER_MAX_TURNS": "50"
+  },
   "permissions": {
     "allow": [
       "Read",
@@ -9,10 +13,6 @@
     "defaultMode": "auto"
   },
   "model": "claude-fable-5[1m]",
-  "env": {
-    "ECC_OBSERVER_TIMEOUT_SECONDS": "300",
-    "ECC_OBSERVER_MAX_TURNS": "50"
-  },
   "hooks": {
     "PreToolUse": [
       {
@@ -69,6 +69,16 @@
           {
             "type": "command",
             "command": "~/.claude/skills/continuous-learning-v2/hooks/observe.sh"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat ~/.claude/feedback_operating_manual.md"
           }
         ]
       }
