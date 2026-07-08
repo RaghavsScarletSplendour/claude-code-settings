@@ -78,7 +78,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cat ~/.claude/feedback_operating_manual.md"
+            "command": "jq -Rs --arg event SubagentStart '{hookSpecificOutput: {hookEventName: $event, additionalContext: .}}' ~/.claude/feedback_operating_manual.md"
           }
         ]
       }
