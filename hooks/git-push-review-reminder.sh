@@ -4,7 +4,9 @@
 # Gated to `git push*` via the settings "if" filter. Never blocks: exit 0.
 input=$(cat)
 cmd=$(printf '%s' "$input" | jq -r '.tool_input.command // ""' 2>/dev/null)
-printf '%s' "$cmd" | grep -qE '\bgit[[:space:]]+push\b' || exit 0
+# Allow args between `git` and `push` — `git -C <path> push` is 19% of pushes here, and the
+# old strict `git[[:space:]]+push` gate silently dropped every one. (Caught in W28 review.)
+printf '%s' "$cmd" | grep -qE '\bgit\b[^;|&]*[[:space:]]push\b' || exit 0
 # fire when main/master is named, or on a bare push (current branch may be main)
 if printf '%s' "$cmd" | grep -qE '\b(main|master)\b' \
    || printf '%s' "$cmd" | grep -qE 'git[[:space:]]+push[[:space:]]*($|origin[[:space:]]*($|HEAD))'; then

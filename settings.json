@@ -58,8 +58,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash $HOME/.claude/hooks/git-push-review-reminder.sh",
-            "if": "Bash(git push*)"
+            "command": "bash $HOME/.claude/hooks/git-push-review-reminder.sh"
           }
         ]
       },
@@ -68,8 +67,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash $HOME/.claude/hooks/verify-reminder.sh",
-            "if": "Bash(git commit*)"
+            "command": "bash $HOME/.claude/hooks/verify-reminder.sh"
           }
         ]
       },
