@@ -8,7 +8,9 @@
       "Read",
       "Grep",
       "Glob",
-      "Bash"
+      "Bash",
+      "Write(//Users/raghavbajoria/.local/share/ecc-homunculus/**)",
+      "Edit(//Users/raghavbajoria/.local/share/ecc-homunculus/**)"
     ],
     "defaultMode": "auto"
   },
@@ -60,6 +62,25 @@
             "if": "Bash(git push*)"
           }
         ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $HOME/.claude/hooks/verify-reminder.sh",
+            "if": "Bash(git commit*)"
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $HOME/.claude/hooks/search-first-reminder.sh"
+          }
+        ]
       }
     ],
     "PostToolUse": [
@@ -69,6 +90,16 @@
           {
             "type": "command",
             "command": "~/.claude/skills/continuous-learning-v2/hooks/observe.sh"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $HOME/.claude/hooks/worktree-banner.sh"
           }
         ]
       }
@@ -129,6 +160,7 @@
     }
   },
   "effortLevel": "high",
+  "advisorModel": "fable",
   "tui": "default",
   "voice": {
     "enabled": true,

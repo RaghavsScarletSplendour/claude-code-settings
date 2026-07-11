@@ -42,6 +42,23 @@ find ~/.claude -name '*.jsonl' -mtime -7 2>/dev/null   # last 7 days
 If that location is empty or different on this machine, ask the user where their
 Claude Code history lives rather than guessing.
 
+### Filter the corpus before you count anything (learned the hard way, W28)
+
+The session directory contains sessions that are **not the human's work**, and they
+outnumber the real ones. Filter both of these before any census, or every percentage
+you report will be wrong:
+
+- **The continuous-learning observer's own runs** — `~/.claude/projects/*ecc-homunculus*`.
+  In W28 these were **259 of 338 sessions (3:1)**. They are Haiku `--print` runs, not work.
+- **Injected skill/command preambles count as "user turns"** in the JSONL. A turn starting
+  with `Base directory for this skill:`, `# /<command>`, `Review target:`, `<...>`, or
+  `This session is being continued` is *not* something the human typed. In W28 this
+  inflated 726 real turns → 1065, and made a correction-regex match skill docs instead of
+  actual corrections.
+
+Sanity-check the filter: if "sessions this week" is wildly higher than the number of days
+× a plausible sessions-per-day, you are counting robots.
+
 Two ways to read it:
 
 1. **Distilled archive (preferred).** Raw JSONL is long and full of junk that
