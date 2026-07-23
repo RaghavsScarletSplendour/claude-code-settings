@@ -1,61 +1,82 @@
 #!/usr/bin/env bash
-# PreToolUse GUARD (blocking) — the escalation of the warn-only supabase-write-reminder.
+# PreToolUse GUARD — every Supabase WRITE against PROD requires your real,
+# interactive approval. Reads are never touched, on any project, ever.
 #
-# WHY: In session a74315bd (W29), the warn-only reminder fired PRE-write on a prod
-# execute_sql `BEGIN; DELETE FROM administration_compliance_items ...; INSERT ...`
-# against ref lzyvawfyrisuyikjsgtk (prod), and the agent executed it on prod anyway
-# without spawning database-reviewer. Verified against source: the write went through
-# mcp__claude_ai_Supabase__execute_sql — the exact tool this matches. A warn-only hook
-# on an IRREVERSIBLE prod write is ignorable prose with a shell wrapper. This one denies.
+# v2 — replaces the v1 "deny + self-serve override" design. A security review
+# (and a direct repro) found the v1 override was a hole: `touch
+# ~/.claude/.prod-write-ok` — an ordinary, already-allowed Bash call — silently
+# cleared the block, so the agent could self-authorize the exact thing this
+# hook exists to gate. v2 removes that override entirely. There is no env var,
+# no sentinel file, no in-script escape hatch. The only way a prod write
+# proceeds is a live "ask" permission decision that only the human can answer.
 #
-# SCOPE: only hard-stops WRITES/DDL/migrations against the PROD ref. Staging and every
-# other ref keep the existing warn-only reminder — this is not a blanket block.
+# POLICY (explicit, from the user): reads never need approval, anywhere,
+# including on prod. WRITES to PROD need approval every single time, no
+# exceptions. Staging and every other ref are unaffected by this hook — they
+# still just get the existing warn-only supabase-write-reminder.sh.
 #
-# OVERRIDE: the human sets CLAUDE_PROD_WRITE_OK=1 (env) or touches ~/.claude/.prod-write-ok
-# for the next 5 min after they have (a) seen database-reviewer's verdict and (b) approved.
+# DETECTION FIX: v1 scanned for a denylist of write verbs and missed COPY,
+# CALL, function calls that write, SELECT ... INTO, REFRESH MATERIALIZED VIEW.
+# v2 flips the polarity: a statement must be PROVABLY a pure read (starts with
+# SELECT/EXPLAIN/SHOW/WITH AND contains no write verb anywhere in the text —
+# catches a modifying CTE or a stacked statement after a semicolon) to be let
+# through untouched. Anything else on prod — unrecognized shapes included —
+# is treated as a write and requires approval.
+#
+# HONEST LIMIT: this file, like anything under ~/.claude, can be edited or
+# deleted by an agent with Bash/Edit access — no hook here can gate edits to
+# itself. This is not a sandboxed boundary against a fully adversarial or
+# self-modifying agent. What it does do: turn "the agent decided to proceed"
+# into "the human had to click approve," which is the actual failure mode
+# that motivated it.
 set -uo pipefail
 
-PROD_REF="lzyvawfyrisuyikjsgtk"   # jdjones-agents = PROD (names mislead)
+PROD_REF="lzyvawfyrisuyikjsgtk"      # jdjones-agents = PROD (names mislead)
+STAGING_REF="ffrsffycrpevjhfyklxs"   # JD Jones Test Server = migration target
+
 input=$(cat)
 tool=$(printf '%s' "$input" | jq -r '.tool_name // ""' 2>/dev/null)
 ref=$(printf '%s' "$input" | jq -r '.tool_input.project_id // .tool_input.project_ref // ""' 2>/dev/null)
 
-is_prod_write=0
+# Out of scope entirely unless it's one of the two Supabase write-capable tools.
 case "$tool" in
-  *apply_migration) [ "$ref" = "$PROD_REF" ] && is_prod_write=1 ;;
-  *execute_sql)
-    if [ "$ref" = "$PROD_REF" ]; then
-      q=$(printf '%s' "$input" | jq -r '.tool_input.query // .tool_input.sql // ""' 2>/dev/null)
-      printf '%s' "$q" | grep -iqE '\b(insert|update|delete|drop|alter|create|truncate|grant|revoke)\b' && is_prod_write=1
-    fi ;;
+  *apply_migration|*execute_sql) : ;;
+  *) exit 0 ;;
 esac
-[ "$is_prod_write" = 1 ] || exit 0
 
-# Override: env flag, or a fresh sentinel file (< 5 min old)
-if [ "${CLAUDE_PROD_WRITE_OK:-0}" = "1" ]; then exit 0; fi
-sentinel="$HOME/.claude/.prod-write-ok"
-if [ -f "$sentinel" ]; then
-  age=$(( $(date +%s) - $(stat -f %m "$sentinel" 2>/dev/null || echo 0) ))
-  [ "$age" -lt 300 ] && exit 0
+# A ref that's present and clearly NOT prod is out of scope (falls through to
+# the warn-only reminder). An EMPTY/unreadable ref on one of these tools is
+# NOT waved through — we can't prove it isn't prod, so it stays in scope below.
+if [ -n "$ref" ] && [ "$ref" != "$PROD_REF" ]; then
+  exit 0
 fi
 
-# DENY. Route to the human instead of executing an irreversible prod write autonomously.
-jq -cn '{
+is_write=0
+case "$tool" in
+  *apply_migration)
+    is_write=1
+    ;;
+  *execute_sql)
+    q=$(printf '%s' "$input" | jq -r '.tool_input.query // .tool_input.sql // ""' 2>/dev/null)
+    qtrim=$(printf '%s' "$q" | sed -E 's/^[[:space:]]+//; s/[[:space:]]+$//')
+    if printf '%s' "$qtrim" | grep -qiE '^(select|explain|show|with)\b' \
+       && ! printf '%s' "$q" | grep -qiE '\b(insert|update|delete|drop|alter|create|truncate|grant|revoke|copy|call|refresh|merge|into)\b'
+    then
+      is_write=0   # provably a pure read
+    else
+      is_write=1   # anything else — including unrecognized shapes — needs approval
+    fi
+    ;;
+esac
+[ "$is_write" = 1 ] || exit 0
+
+reason="WRITE against PROD ($PROD_REF). This needs your explicit approval in the permission prompt — every time, no exceptions, no override coded into this script. Before approving: prefer a staging ($STAGING_REF) dry-run first, and consider a database-reviewer pass. If you don't see an approval prompt for this, stop and tell Raghav directly rather than proceeding — that would mean this mechanism isn't being honored."
+
+jq -cn --arg r "$reason" '{
   hookSpecificOutput: {
     hookEventName: "PreToolUse",
-    permissionDecision: "deny",
-    permissionDecisionReason: "BLOCKED: irreversible WRITE against PROD (lzyvawfyrisuyikjsgtk). This is not a reminder you can proceed past. Required before this can run: (1) spawn database-reviewer and show its verdict (WHERE-scope, revert safety, lock order); (2) get the human to explicitly approve; (3) they set CLAUDE_PROD_WRITE_OK=1 or `touch ~/.claude/.prod-write-ok`. Prefer applying to staging (ffrsffycrpevjhfyklxs) first and having the human run the prod apply themselves."
+    permissionDecision: "ask",
+    permissionDecisionReason: $r
   }
 }'
 exit 0
-
-# NOTE (install/test): wire via the update-config skill on the PreToolUse
-# `mcp__claude_ai_Supabase__apply_migration|mcp__claude_ai_Supabase__execute_sql` matcher,
-# BEFORE the existing warn-only reminder. Test like W28's 5/5 pass:
-#  - prod-ref DELETE  -> denied
-#  - prod-ref apply_migration -> denied
-#  - staging-ref DELETE -> NOT denied (falls through to warn-only)
-#  - prod-ref SELECT (read) -> NOT denied
-#  - override present -> allowed
-# Confirm the running Claude Code build honors permissionDecision:"deny" on MCP tools; if a
-# given build only supports exit-code-2 blocking, swap the JSON for `exit 2` + stderr reason.
