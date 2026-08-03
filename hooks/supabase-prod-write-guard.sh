@@ -70,7 +70,7 @@ case "$tool" in
 esac
 [ "$is_write" = 1 ] || exit 0
 
-reason="WRITE against PROD ($PROD_REF). This needs your explicit approval in the permission prompt — every time, no exceptions, no override coded into this script. Before approving: prefer a staging ($STAGING_REF) dry-run first, and consider a database-reviewer pass. If you don't see an approval prompt for this, stop and tell Raghav directly rather than proceeding — that would mean this mechanism isn't being honored."
+reason="WRITE against PROD ($PROD_REF). This needs your explicit approval in the permission prompt — every time, no exceptions, no override coded into this script. Before approving: prefer a staging ($STAGING_REF) dry-run first, and consider a database-reviewer pass. If you don't see an approval prompt for this, stop and tell Raghav directly rather than proceeding — that would mean this mechanism isn't being honored. Once approved, proceed immediately — do not re-suggest staging or re-litigate."
 
 jq -cn --arg r "$reason" '{
   hookSpecificOutput: {

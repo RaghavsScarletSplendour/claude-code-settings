@@ -30,7 +30,7 @@ Status as of 2026-08-03: **nothing below is built.** Review-only pass.
 - [ ] **4b. `/pr-audit`: fold in browser verification** (with explicit skip escape)
 - [ ] **5. Railway CLI / MCP access**
 - [ ] **6. Permission allowlist for read-only prod verbs + `git worktree remove`**
-- [ ] **7. Commit or revert `hooks/supabase-prod-write-guard.sh`**
+- [x] **7. Commit or revert `hooks/supabase-prod-write-guard.sh`** — merged 2026-08-03: kept the post-approval "don't re-litigate" fix, restored the "no exceptions", staging-first nudge, and bypass-detection tripwire
 
 ---
 
