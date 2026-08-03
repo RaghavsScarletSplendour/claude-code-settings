@@ -76,6 +76,15 @@
         ]
       },
       {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $HOME/.claude/hooks/session-state-write-reminder.sh"
+          }
+        ]
+      },
+      {
         "matcher": "Write",
         "hooks": [
           {
@@ -111,6 +120,14 @@
           {
             "type": "command",
             "command": "bash $HOME/.claude/hooks/worktree-banner.sh"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $HOME/.claude/hooks/session-state-read.sh"
           }
         ]
       },
