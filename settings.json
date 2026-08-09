@@ -92,6 +92,15 @@
             "command": "bash $HOME/.claude/hooks/search-first-reminder.sh"
           }
         ]
+      },
+      {
+        "matcher": "Edit|Write|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $HOME/.claude/hooks/plan-only-guard.sh"
+          }
+        ]
       }
     ],
     "PostToolUse": [
@@ -156,6 +165,14 @@
           {
             "type": "command",
             "command": "cat ~/.claude/feedback_operating_manual.md"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $HOME/.claude/hooks/plan-only-guard.sh"
           }
         ]
       },
