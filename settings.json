@@ -12,11 +12,26 @@
       "Write(//Users/raghavbajoria/.local/share/ecc-homunculus/**)",
       "Edit(//Users/raghavbajoria/.local/share/ecc-homunculus/**)"
     ],
+    "deny": [
+      "Bash(./scripts/local/reset-data.sh *)",
+      "Bash(scripts/local/reset-data.sh *)",
+      "Bash(bash scripts/local/reset-data.sh *)",
+      "Bash(sh scripts/local/reset-data.sh *)"
+    ],
     "defaultMode": "auto"
   },
   "model": "sonnet",
   "hooks": {
     "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $HOME/.claude/hooks/planner-reset-guard.sh"
+          }
+        ]
+      },
       {
         "matcher": "Bash",
         "hooks": [
