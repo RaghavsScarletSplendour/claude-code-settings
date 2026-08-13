@@ -25,9 +25,9 @@ Status as of 2026-08-03: **nothing below is built.** Review-only pass.
 
 - [x] ~~**1. `/ship-pr <n>`**~~ — DROPPED 2026-08-03, trio retired (see table above)
 - [x] **2. Session state file + resume-read hook** — built 2026-08-03, not yet committed
-- [ ] **3. Plain-language as the default** (must NOT be a slash command)
-- [ ] **4. `/pr-audit`: add "What this PR actually changes" §1**
-- [ ] **4b. `/pr-audit`: fold in browser verification** (with explicit skip escape)
+- [x] **3. Plain-language as the default** (must NOT be a slash command) — built 2026-08-03, added as new CLAUDE.md section
+- [x] **4. `/pr-audit`: add "What this PR actually changes" §1** — built 2026-08-03, inserted between VERDICT line and Blockers in §7
+- [x] **4b. `/pr-audit`: fold in browser verification** (with explicit skip escape) — built 2026-08-03, phase 6 reframed + required `SKIPPED because X` line added to §7
 - [ ] **5. Railway CLI / MCP access**
 - [ ] **6. Permission allowlist for read-only prod verbs + `git worktree remove`**
 - [x] **7. Commit or revert `hooks/supabase-prod-write-guard.sh`** — merged 2026-08-03: kept the post-approval "don't re-litigate" fix, restored the "no exceptions", staging-first nudge, and bypass-detection tripwire
