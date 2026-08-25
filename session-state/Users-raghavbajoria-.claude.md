@@ -1,5 +1,5 @@
 ---
-updated: 2026-08-25T00:00:00Z
+updated: 2026-08-25T00:05:00Z
 project: /Users/raghavbajoria/.claude
 ---
 
@@ -46,26 +46,28 @@ several `session-state/*.md` files, and new `skills/quiz-me/`, `skills/show-me/`
 concurrent session, not this one.
 
 ## In flight
-`git push origin main` is blocked by the auto-mode classifier (same as the 2026-08-13
-session — see Blockers). Commit `940aa97` is real and correct; it just isn't on the
-remote yet. User has already given explicit permission to push; only the mechanism is
-blocked.
+`git push origin main` in THIS repo (`~/.claude`) is blocked by the auto-mode classifier
+(same as the 2026-08-13 session — see Blockers). Commits `940aa97` and `90a95df` are real
+and correct; they just aren't on the remote yet. User has already given explicit
+permission to push; only the mechanism is blocked.
 
-jdjones-platform: user chose "new branch off current main" for the `pr-audit.md` fix
-(that repo's working branch is stale, upstream deleted, and has unrelated uncommitted
-leftovers — audit_*.md files, a PDF, `closed-worktree-salvage/`, `tmp-pdfs/` — none of
-which should be touched or committed). Not yet started at the point this file was written.
+jdjones-platform is done: fetched `origin/main`, created an isolated worktree off it
+(avoided the stale `fix/so-register-ai-price-tax-strip` branch and its ~15 unrelated
+uncommitted files — audit_*.md leftovers, a PDF, `closed-worktree-salvage/`), applied
+just the `.claude/commands/pr-audit.md` patch there, committed (`a75ca4a6`), pushed
+`fix/pr-audit-staging-ci-signal` to origin, removed the scratch worktree. No PR opened —
+not asked for one; user would need to request it explicitly (creating a PR is a
+publish-type action).
 
 ## Next
 1. Ask the user to run `git push origin main` themselves via `!` (exact command below) —
-   this is the same manual-push pattern used successfully on 2026-08-13.
-2. In jdjones-platform: `git fetch origin main`, create a new branch off `origin/main`,
-   commit ONLY `.claude/commands/pr-audit.md`, push that branch. Do not touch the stale
-   branch or its unrelated leftover files. Not yet asked whether the user wants a PR
-   opened for it.
-3. Optionally update `~/.claude/retro/2026-W35-RETRO-REPORT.md` (gitignored, not
+   this is the same manual-push pattern used successfully on 2026-08-13. This is the only
+   remaining step from this session.
+2. Optionally update `~/.claude/retro/2026-W35-RETRO-REPORT.md` (gitignored, not
    blocking) to reflect what actually shipped vs. the original proposal — it's currently
    stale relative to the bug fixes made during self-review.
+3. If the user wants `fix/pr-audit-staging-ci-signal` turned into a PR on
+   jdjones-platform, open one — not done yet, wasn't asked.
 
 ```bash
 git -C /Users/raghavbajoria/.claude push origin main
