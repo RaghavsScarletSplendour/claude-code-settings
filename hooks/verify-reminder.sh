@@ -31,6 +31,6 @@ staged=$(printf '%s' "$staged" | grep -v '^$' | sort -u)
 
 # Anything that is NOT a doc/test/lockfile counts as a runtime surface.
 if printf '%s\n' "$staged" | grep -qvE '(^|/)(docs?|tests?|__tests__|e2e)/|\.(md|txt|lock|snap)$|(^|/)(package-lock\.json|pnpm-lock\.yaml|uv\.lock)$'; then
-  jq -cn '{hookSpecificOutput:{hookEventName:"PreToolUse",additionalContext:"Reminder: this commit touches product source with a runtime surface. Per CLAUDE.md the /verify skill is MANDATORY here — drive the affected flow end-to-end and observe it, do not ship on tsc/vitest/build alone. (It has fired 0 times in the last two weeks while the user asked for verification by hand 27 times.)"}}'
+  jq -cn '{hookSpecificOutput:{hookEventName:"PreToolUse",additionalContext:"This commit touches product source with a runtime surface. Per CLAUDE.md, drive the affected flow end-to-end and observe it before shipping; type-check, unit tests, and build alone are not verification. Use the verify skill if this project has one."}}'
 fi
 exit 0

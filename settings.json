@@ -51,15 +51,6 @@
         ]
       },
       {
-        "matcher": "mcp__claude-in-chrome__.*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash $HOME/.claude/hooks/cic-preflight-reminder.sh"
-          }
-        ]
-      },
-      {
         "matcher": "mcp__claude_ai_Supabase__apply_migration|mcp__claude_ai_Supabase__execute_sql",
         "hooks": [
           {
@@ -129,20 +120,20 @@
         ]
       },
       {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "[ -n \"$SUPERSET_HOME_DIR\" ] && [ -x \"$SUPERSET_HOME_DIR/hooks/notify.sh\" ] && SUPERSET_AGENT_ID=claude \"$SUPERSET_HOME_DIR/hooks/notify.sh\" || true"
-          }
-        ]
-      },
-      {
         "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
             "command": "bash $HOME/.claude/hooks/macos-tcc-detect.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -n \"$SUPERSET_HOME_DIR\" ] && [ -x \"$SUPERSET_HOME_DIR/hooks/notify.sh\" ] && SUPERSET_AGENT_ID=claude \"$SUPERSET_HOME_DIR/hooks/notify.sh\" || true"
           }
         ]
       }
@@ -188,14 +179,6 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cat ~/.claude/feedback_operating_manual.md"
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
             "command": "bash $HOME/.claude/hooks/asd-ste100-reminder.sh"
           }
         ]
@@ -231,8 +214,8 @@
           {
             "type": "command",
             "command": "bash $HOME/.claude/hooks/retro-capture-auto.sh",
-            "async": true,
-            "timeout": 30
+            "timeout": 30,
+            "async": true
           }
         ]
       }
@@ -321,7 +304,18 @@
       }
     }
   },
-  "effortLevel": "medium",
+  "effortLevel": "high",
+  "modelSettings": {
+    "claude-fable-5": {
+      "effortLevel": "high"
+    },
+    "claude-sonnet-5": {
+      "effortLevel": "medium"
+    },
+    "claude-fable-5-1": {
+      "effortLevel": "low"
+    }
+  },
   "advisorModel": "opus",
   "tui": "default",
   "voice": {
@@ -331,8 +325,42 @@
   "skipDangerousModePermissionPrompt": true,
   "skipWorkflowUsageWarning": true,
   "theme": "dark",
+  "switchModelsOnFlag": false,
   "remoteControlAtStartup": false,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
+  "autoMode": {
+    "soft_deny": [
+      "$defaults",
+      "Bash(psql:*) against potionlabs-kernel-production.up.railway.app — Production Reads/Writes on a host whose name carries 'production'",
+      "Write|Edit(.repos/**) — repo docs explicitly mark this read-only-by-convention symlink mount as never-edit, though enforcement is described as living in .claude/settings.json rather than shipped defaults"
+    ],
+    "environment": [
+      "### Org-wide",
+      "**Organization**: PotionLabs (AI Intelligence Workforce / Executive Intelligence / Task Planner) — repo Potion-Labs-AI/potionlabs-vault",
+      "**Cloud provider(s)**: None configured",
+      "**Repository visibility**: Private — Potion-Labs-AI/potionlabs-vault (confirmed via gh)",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: None configured",
+      "**Default / protected branches**: Default branch main; no protected branches or rulesets listed (gh could not query rulesets — do not assume unprotected)",
+      "**CI/CD deploy targets**: None configured",
+      "**Network posture**: None configured",
+      "**Source control**: Potion-Labs-AI/potionlabs-vault (origin, github.com:Potion-Labs-AI/potionlabs-vault.git) and its remote(s) only",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: potionlabs-kernel-production.up.railway.app (Railway-hosted production kernel service contacted repeatedly in this project's transcripts)",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: Reminders/Items/Set up digest email credentials.md (credential-setup note); People/Expectations/ and Employee Expectations.html (employee-facing personal data); Customers/Accounts and Prospective Customers dossiers (business-confidential); share only with the founder and audiences the founder explicitly names",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: potionlabs-kernel-production.up.railway.app (name carries 'production'); any namespace/host/container whose name carries prod or production as a whole word or segment",
+      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries prod or production as a whole word or name segment",
+      "### User-specific",
+      "**Primary use of Claude Code**: Maintaining an Obsidian vault (PotionLabs knowledge base) — notes, trackers, and an LLM synthesis layer; routine under this repo's folders (Company Overview/, Competitor Analysis/, Customers/, Vendors/, People/, Reminders/, Social Media/, Notebook/, Health/, scripts/, .claude/skills/)",
+      "**Trusted repo**: The git repository at /Users/raghavbajoria/Desktop/Companies/AI Company (Potion-Labs-AI/potionlabs-vault, private) and its origin remote — confidential vault material is fine to commit/push here; content ported from outside this session's repo is not this repo's own work",
+      "**Org-specific CLIs**: None configured",
+      "**routine under .repos/ prefix**: .repos/ is a read-only symlink mount (currently .repos/jdjones → ~/Projects/jdjones-platform) for context only — never edit, write, or run destructive commands against it or its resolved real path"
+    ]
+  },
   "voiceEnabled": true
 }
