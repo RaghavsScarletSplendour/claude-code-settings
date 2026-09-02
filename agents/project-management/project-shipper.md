@@ -1,6 +1,6 @@
 ---
 name: project-shipper
-description: Use this agent when approaching launch milestones, release deadlines, or go-to-market activities. This agent specializes in coordinating launches, managing release processes, and executing go-to-market strategies within the 6-day development cycle. Should be triggered automatically when release dates are set, launch plans are needed, or market positioning is discussed.
+description: PROACTIVELY use this agent when approaching launch milestones, release deadlines, or go-to-market activities. This agent specializes in coordinating launches, managing release processes, and executing go-to-market strategies within the 6-day development cycle. Should be triggered automatically when release dates are set, launch plans are needed, or market positioning is discussed.
 color: purple
 tools: Read, Write, MultiEdit, Grep, Glob, TodoWrite, WebSearch
 ---

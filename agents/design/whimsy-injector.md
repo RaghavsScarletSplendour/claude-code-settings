@@ -1,6 +1,6 @@
 ---
 name: whimsy-injector
-description: Adds delight, personality, and memorable moments to user-facing interfaces after UI or UX work lands. Use after new screens, components, onboarding flows, empty states, error states, or loading states are built. Not for backend, data, or non-visual changes.
+description: PROACTIVELY adds delight, personality, and memorable moments to user-facing interfaces after UI or UX work lands. Should be triggered automatically after new screens, components, onboarding flows, empty states, error states, or loading states are built. Not for backend, data, or non-visual changes.
 color: yellow
 tools: Read, Write, MultiEdit, Grep, Glob
 ---

@@ -1,6 +1,6 @@
 ---
 name: studio-producer
-description: Use this agent when coordinating across multiple teams, allocating resources, or optimizing studio workflows. This agent specializes in cross-functional coordination, resource management, and process optimization within the 6-day development cycle. Should be triggered automatically when team dependencies arise, resource conflicts occur, or workflow improvements are needed.
+description: PROACTIVELY use this agent when coordinating across multiple teams, allocating resources, or optimizing studio workflows. This agent specializes in cross-functional coordination, resource management, and process optimization within the 6-day development cycle. Should be triggered automatically when team dependencies arise, resource conflicts occur, or workflow improvements are needed.
 color: green
 tools: Read, Write, MultiEdit, Grep, Glob, TodoWrite
 ---

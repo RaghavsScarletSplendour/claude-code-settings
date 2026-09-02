@@ -1,6 +1,6 @@
 ---
 name: experiment-tracker
-description: Use this agent when experiments are started, modified, or when results need analysis. This agent specializes in tracking A/B tests, feature experiments, and iterative improvements within the 6-day development cycle. Should be triggered automatically when experimental code paths or feature flags are introduced.
+description: PROACTIVELY use this agent when experiments are started, modified, or when results need analysis. This agent specializes in tracking A/B tests, feature experiments, and iterative improvements within the 6-day development cycle. Should be triggered automatically when experimental code paths or feature flags are introduced.
 color: blue
 tools: Read, Write, MultiEdit, Grep, Glob, TodoWrite
 ---
