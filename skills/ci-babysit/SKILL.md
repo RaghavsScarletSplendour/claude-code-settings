@@ -15,9 +15,9 @@ description: >
 
 ## Why this exists
 
-W32 retro finding: the single most repeated interaction of the week (17+ turns across ~15
-sessions) was the user hand-driving CI — "comment /ok-to-test" → "watch the ci gates" →
-"what's it at now" → "check again" → "all three green?". Each poll costs a round-trip and
+Hand-driving CI is the most repeated interaction in this user's sessions — "comment
+/ok-to-test" → "watch the ci gates" → "what's it at now" → "check again" → "all three
+green?". Each poll costs a round-trip and
 attention. The whole loop is mechanical and should cost the user exactly one message.
 
 The second most repeated question, usually asked the moment CI goes green or the PR merges,

@@ -104,8 +104,8 @@ Works standalone: it does **not** assume the worktree was made by `/new-worktree
    ```
 
    **Also clean up a lingering `/pr-audit` report.** `/pr-audit` writes a report to
-   `tasks/audit_<branch>.md`. This file can survive worktree teardown. It was the #1 most
-   common manual follow-up users had to ask for by hand (retro W35). Check for it. Delete it
+   `tasks/audit_<branch>.md`. This file can survive worktree teardown and users otherwise have
+   to ask for its removal by hand. Check for it. Delete it
    if present. Require `$MAIN` and `$BR` to be non-empty first — an empty value here just
    makes the check silently useless (never destructive), but check anyway for clarity:
    ```bash
@@ -153,8 +153,8 @@ Works standalone: it does **not** assume the worktree was made by `/new-worktree
    The `case` match (not `grep -F "$WT/"`) catches both "mounted at exactly `$WT`" and
    "mounted at a subpath of `$WT`" — a plain `grep -F "$WT/"` misses the exact-path case,
    which is the common shape for a bare `volumes: - .:/workspace` bind mount.
-   Skips silently if Docker isn't installed or isn't running. This only kills the retro
-   W35-named "10 stale containers eating memory before a demo" case, not live infra.
+   Skips silently if Docker isn't installed or isn't running. This only removes stale
+   containers left behind by the worktree, not live infra.
 
 5. **Delete the branch.** `-d` refuses to delete unmerged work — that refusal *is* the
    safety, so do not reach for `-D` on your own:

@@ -72,7 +72,7 @@ Do not keep nudging after that unless the user wants a longer sequence.
 Make life easy for the connector:
 - explain why the intro is a fit
 - include a forwardable blurb
-- keep the forwardable blurb under 100 words
+- keep the forwardable blurb short enough to paste as one email paragraph
 
 ## Post-Meeting Updates
 

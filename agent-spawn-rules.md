@@ -1,8 +1,8 @@
 # Agent-spawn house rules
 
-Operating rules for when **I** spin up subagents / fan-out workflows. The retro found
-that most wasted subagent effort traces to one thing: helpers aren't told the ground
-rules, so they learn them the hard way every time. Prepend the relevant rules below to
+Operating rules for when **I** spin up subagents / fan-out workflows. Most wasted
+subagent effort traces to one thing: helpers aren't told the ground rules, so they learn
+them the hard way every time. Prepend the relevant rules below to
 each spawned agent's prompt (and follow them myself when orchestrating). Keep them
 terse — they're a preamble, not an essay.
 

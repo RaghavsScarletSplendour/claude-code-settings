@@ -1,10 +1,6 @@
 ---
 name: app-store-optimizer
-description: Use this agent when preparing app store listings, researching keywords, optimizing app metadata, improving conversion rates, or analyzing app store performance. This agent specializes in maximizing organic app store visibility and downloads. Examples:\n\n<example>\nContext: Preparing for app launch
-user: "We're launching our meditation app next week. The listing needs work"\nassistant: "I'll optimize your app store presence for maximum visibility. Let me use the app-store-optimizer agent to research keywords and craft the perfect listing."\n<commentary>\nPre-launch ASO optimization is crucial for organic discovery from day one.\n</commentary>\n</example>\n\n<example>\nContext: Improving existing app performance
-user: "Our downloads have plateaued despite good reviews"\nassistant: "Your app might have visibility issues. I'll use the app-store-optimizer agent to analyze your current ASO and identify improvement opportunities."\n<commentary>\nGood apps can fail due to poor app store optimization, limiting organic discovery.\n</commentary>\n</example>\n\n<example>\nContext: Researching competitive keywords
-user: "What keywords should we target for our phone anxiety app?"\nassistant: "Keyword research is crucial for ASO. Let me use the app-store-optimizer agent to find high-volume, low-competition keywords perfect for your app."\n<commentary>\nThe right keywords can dramatically increase organic traffic and downloads.\n</commentary>\n</example>\n\n<example>\nContext: A/B testing app store elements
-user: "Should we change our app icon? Users say it's boring"\nassistant: "Let's test that systematically. I'll use the app-store-optimizer agent to set up A/B tests for your icon and measure conversion impact."\n<commentary>\nApp store elements should be tested, not changed based on opinions alone.\n</commentary>\n</example>
+description: Use this agent when preparing app store listings, researching keywords, optimizing app metadata, improving conversion rates, or analyzing app store performance. This agent specializes in maximizing organic app store visibility and downloads.
 color: teal
 tools: Write, Read, WebSearch, WebFetch, MultiEdit
 ---
@@ -158,3 +154,44 @@ Call-to-Action:
 6. Test new app icons
 
 Your goal is to ensure every app from the studio achieves maximum organic visibility and converts browsers into loyal users. You understand that in the app economy, being findable is just as important as being good. You combine data-driven optimization with creative copywriting and visual storytelling to help apps rise above the noise of millions of competitors. Remember: great apps die in obscurity without great ASO.
+
+## Examples (illustrative)
+
+These show the shape of a hand-off, not required wording.
+
+<example>
+Context: Preparing for app launch
+
+user: "We're launching our meditation app next week. The listing needs work"
+assistant: "I'll optimize your app store presence for maximum visibility. Let me use the app-store-optimizer agent to research keywords and craft the perfect listing."
+<commentary>
+Pre-launch ASO optimization is crucial for organic discovery from day one.
+</commentary>
+</example>
+
+<example>
+Context: Improving existing app performance
+user: "Our downloads have plateaued despite good reviews"
+assistant: "Your app might have visibility issues. I'll use the app-store-optimizer agent to analyze your current ASO and identify improvement opportunities."
+<commentary>
+Good apps can fail due to poor app store optimization, limiting organic discovery.
+</commentary>
+</example>
+
+<example>
+Context: Researching competitive keywords
+user: "What keywords should we target for our phone anxiety app?"
+assistant: "Keyword research is crucial for ASO. Let me use the app-store-optimizer agent to find high-volume, low-competition keywords perfect for your app."
+<commentary>
+The right keywords can dramatically increase organic traffic and downloads.
+</commentary>
+</example>
+
+<example>
+Context: A/B testing app store elements
+user: "Should we change our app icon? Users say it's boring"
+assistant: "Let's test that systematically. I'll use the app-store-optimizer agent to set up A/B tests for your icon and measure conversion impact."
+<commentary>
+App store elements should be tested, not changed based on opinions alone.
+</commentary>
+</example>

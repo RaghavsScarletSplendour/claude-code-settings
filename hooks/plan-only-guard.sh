@@ -46,7 +46,7 @@ case "$event" in
     # Writing the plan/doc itself is the point of a planning turn — only warn on source code.
     printf '%s' "$path" | grep -qEi '\.(md|markdown|txt|json|canvas|html)$' && exit 0
     printf '%s' "$path" | grep -qEi '(^|/)(plans?|tasks|docs|notes)/' && exit 0
-    jq -cn --arg p "$path" '{hookSpecificOutput:{hookEventName:"PreToolUse",additionalContext:("STOP: this session is in a PLAN-ONLY state (the user said not to code, and has not yet said go). You are about to modify " + $p + ", which looks like source code. Unless the user has since clearly asked you to build, do not make this edit — finish the plan instead. A previous violation of this cost a full revert.")}}'
+    jq -cn --arg p "$path" '{hookSpecificOutput:{hookEventName:"PreToolUse",additionalContext:("STOP: this session is in a PLAN-ONLY state (the user said not to code, and has not yet said go). You are about to modify " + $p + ", which looks like source code. Unless the user has since clearly asked you to build, do not make this edit — finish the plan instead.")}}'
     ;;
 esac
 exit 0

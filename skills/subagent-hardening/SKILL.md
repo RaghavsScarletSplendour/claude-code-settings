@@ -98,8 +98,7 @@ text or a tool call. (Inside the Workflow tool this is handled for you.)
 ### 7. Don't block synchronously on a single specialist agent
 A single `Agent` call (e.g. `security-auditor`, `database-reviewer`) for one review
 is a different failure mode than Workflow fan-out: it isn't dropped or corrupted, it
-just sometimes hangs (retro W35/W36: a `security-auditor` call sat 10+ minutes with
-no output, twice in one week). Agents run in the background by default for exactly
+just sometimes hangs for many minutes with no output. Agents run in the background by default for exactly
 this reason — use that:
 
 - If there's a manual fallback for the same check (reading the code yourself,
@@ -112,18 +111,17 @@ this reason — use that:
 
 ### 8. One specialist pass is an opinion, not a verified fact — for anything security-critical, get a second one
 A single review pass can be confidently wrong in a way that *looks* thorough: it
-reports real-but-minor findings while missing the one that matters (retro W35/W36:
-a `security-auditor` pass flagged two low-severity issues and missed that the same
-script wrote unreviewed "confirmed" merges straight to the database). This isn't a
+reports real-but-minor findings while missing the one that matters — for example, flagging
+two low-severity issues in a script and missing that it wrote unreviewed "confirmed" merges
+straight to the database. This isn't a
 reason to skip the pass — it's a reason not to stop at one:
 - For a security-sensitive change, don't treat one agent's clean report as the
   verdict. Either re-derive the specific findings yourself (rerun the exploit,
   re-read the diff line the finding cites) or get a second independent pass and
   compare, per the operating manual's "attack your own conclusion" step.
-- This is cheap insurance, not redundant work: a same-session example is the
-  worktree-preflight hook built during the 2026-W36 retro — a `security-auditor`
-  pass found 3 real issues, each one was then independently re-verified with a
-  direct test reproducing the exact evasion before being trusted or shipped.
+- This is cheap insurance, not redundant work. When a review pass finds real issues,
+  re-verify each one with a direct test that reproduces the exact failure before
+  trusting or shipping the fix.
 
 ## What is harness-level — report upstream, don't try to patch
 These are not fixable from a skill/script; capture them in a bug report instead:

@@ -49,14 +49,14 @@ outnumber the real ones. Filter both of these before any census, or every percen
 you report will be wrong:
 
 - **The continuous-learning observer's own runs** — `~/.claude/projects/*ecc-homunculus*`.
-  In W28 these were **259 of 338 sessions (3:1)**. They are Haiku `--print` runs, not work.
+  They typically outnumber real sessions about 3:1. They are `--print` runs, not work.
 - **Injected skill/command preambles count as "user turns"** in the JSONL. A turn starting
   with `Base directory for this skill:`, `# /<command>`, `Review target:`, `<...>`,
   `This session is being continued`, or `Review this change for security vulnerabilities`
-  (the auto-spawned `/security-review` prompt) is *not* something the human typed. In W28
-  this inflated 726 real turns → 1065, and made a correction-regex match skill docs instead
-  of actual corrections. W35 independently hit the missing `security-review` prefix in 6 of
-  7 read-clusters — it's the single largest source of fake human turns after the observer.
+  (the auto-spawned `/security-review` prompt) is *not* something the human typed. Left in,
+  they inflate the human-turn count by roughly half and make correction regexes match skill
+  docs instead of actual corrections. The `security-review` prefix is the single largest
+  source of fake human turns after the observer.
 
 Sanity-check the filter: if "sessions this week" is wildly higher than the number of days
 × a plausible sessions-per-day, you are counting robots.

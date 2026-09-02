@@ -1,6 +1,6 @@
 ---
 name: security-auditor
-description: Use this agent when you need to review code for security vulnerabilities, sensitive information exposure, or potential exploits. This includes checking for hardcoded secrets, API keys, authentication flaws, injection vulnerabilities, insecure data handling, and frontend security issues. The agent should be called after writing new code, especially code handling authentication, user input, API calls, or sensitive data.\n\nExamples:\n\n<example>\nContext: User just implemented a login form with authentication logic.\nuser: "Please create a login form that authenticates users against our API"\nassistant: "Here is the login form implementation with authentication:"\n<function call to write login component and auth logic>\nassistant: "Now let me use the security-auditor agent to review this authentication code for vulnerabilities"\n<Task tool call to security-auditor agent>\n</example>\n\n<example>\nContext: User finished writing an API endpoint that handles user data.\nuser: "Create an endpoint that updates user profile information"\nassistant: "I've created the profile update endpoint:"\n<function call to write API endpoint>\nassistant: "I'll now run the security-auditor agent to check for potential security issues in this code"\n<Task tool call to security-auditor agent>\n</example>\n\n<example>\nContext: User completed a feature involving environment variables and configuration.\nuser: "Set up the database connection with the credentials"\nassistant: "Here's the database configuration:"\n<function call to write database config>\nassistant: "Let me have the security-auditor agent verify no sensitive information is exposed"\n<Task tool call to security-auditor agent>\n</example>
+description: Use this agent when you need to review code for security vulnerabilities, sensitive information exposure, or potential exploits. This includes checking for hardcoded secrets, API keys, authentication flaws, injection vulnerabilities, insecure data handling, and frontend security issues. The agent should be called after writing new code, especially code handling authentication, user input, API calls, or sensitive data.
 tools: Bash, Edit, Write, NotebookEdit, mcp__ide__getDiagnostics, mcp__ide__executeCode
 model: opus
 color: purple
@@ -102,3 +102,34 @@ If the code passes all security checks, confirm this explicitly and note which s
 - Do not review the entire codebase unless specifically asked
 - If you need to see additional files for context (e.g., environment setup, related modules), request them
 - Always err on the side of caution - flag potential issues even if you're not 100% certain
+
+## Examples (illustrative)
+
+These show the shape of a hand-off, not required wording.
+
+<example>
+Context: User just implemented a login form with authentication logic.
+user: "Please create a login form that authenticates users against our API"
+assistant: "Here is the login form implementation with authentication:"
+<function call to write login component and auth logic>
+assistant: "Now let me use the security-auditor agent to review this authentication code for vulnerabilities"
+<Task tool call to security-auditor agent>
+</example>
+
+<example>
+Context: User finished writing an API endpoint that handles user data.
+user: "Create an endpoint that updates user profile information"
+assistant: "I've created the profile update endpoint:"
+<function call to write API endpoint>
+assistant: "I'll now run the security-auditor agent to check for potential security issues in this code"
+<Task tool call to security-auditor agent>
+</example>
+
+<example>
+Context: User completed a feature involving environment variables and configuration.
+user: "Set up the database connection with the credentials"
+assistant: "Here's the database configuration:"
+<function call to write database config>
+assistant: "Let me have the security-auditor agent verify no sensitive information is exposed"
+<Task tool call to security-auditor agent>
+</example>

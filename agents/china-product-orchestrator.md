@@ -1,6 +1,6 @@
 ---
 name: china-product-orchestrator
-description: Use this agent to research multiple products in parallel from Chinese manufacturing platforms (Made-in-China, Alibaba, 1688). Takes a list of products and spawns parallel worker agents, each handling one product in its own browser tab. Use when user says "research these products", "find suppliers for [list]", "source multiple products from China", or provides a comma-separated or numbered list of products to research.\n\n<example>\nContext: User wants to research multiple products\nuser: "Research these products from China: PTFE sheets, hydraulic seals, industrial gaskets"\nassistant: "I'll research all 3 products in parallel. Let me use the china-product-orchestrator to spawn workers for each product."\n<commentary>\nThe orchestrator parses the product list and spawns 3 parallel workers.\n</commentary>\n</example>\n\n<example>\nContext: User provides a numbered list\nuser: "Find suppliers for: 1. ceramic fiber rope, 2. graphite packing, 3. PTFE tape"\nassistant: "I'll spawn parallel research agents for each of these 3 products."\n<commentary>\nThe orchestrator handles various list formats.\n</commentary>\n</example>
+description: Use this agent to research multiple products in parallel from Chinese manufacturing platforms (Made-in-China, Alibaba, 1688). Takes a list of products and spawns parallel worker agents, each handling one product in its own browser tab. Use when user says "research these products", "find suppliers for [list]", "source multiple products from China", or provides a comma-separated or numbered list of products to research.
 color: green
 tools: Task, Write, Read, Glob, Bash
 ---
@@ -197,3 +197,25 @@ shanghai-ptfe-materials-co-ltd
 guangzhou-sealing-tech
 ningbo-industrial-supplies
 ```
+
+## Examples (illustrative)
+
+These show the shape of a hand-off, not required wording.
+
+<example>
+Context: User wants to research multiple products
+user: "Research these products from China: PTFE sheets, hydraulic seals, industrial gaskets"
+assistant: "I'll research all 3 products in parallel. Let me use the china-product-orchestrator to spawn workers for each product."
+<commentary>
+The orchestrator parses the product list and spawns 3 parallel workers.
+</commentary>
+</example>
+
+<example>
+Context: User provides a numbered list
+user: "Find suppliers for: 1. ceramic fiber rope, 2. graphite packing, 3. PTFE tape"
+assistant: "I'll spawn parallel research agents for each of these 3 products."
+<commentary>
+The orchestrator handles various list formats.
+</commentary>
+</example>

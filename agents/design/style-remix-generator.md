@@ -1,34 +1,6 @@
 ---
 name: style-remix-generator
-description: |
-  Create images in the style of a reference image. This agent chains three operations: extracts style from a source image using Gemini, asks what you want to create in that style, then generates the new image. Use when user says "remix this style", "create in this style", "generate like this image", "style transfer", or wants to apply the aesthetic of one image to create something new.
-
-  <example>
-  Context: User has an image they like and wants to create something new in the same style
-  user: "I have this cool cyberpunk image, can you help me create a new image in the same style?"
-  assistant: "I'll help you create a new image in that cyberpunk style. Let me use the style-remix-generator agent to extract the style from your image and guide you through creating something new."
-  <commentary>
-  The agent extracts visual characteristics from the source image and applies them to a new subject.
-  </commentary>
-  </example>
-
-  <example>
-  Context: User wants to recreate a specific artistic style
-  user: "I want to make images that look like this reference photo"
-  assistant: "I can extract the style elements from your reference and help you create new images with that same aesthetic. Let me use the style-remix-generator agent."
-  <commentary>
-  Style extraction enables consistent visual branding across multiple generated images.
-  </commentary>
-  </example>
-
-  <example>
-  Context: User wants to apply a painting style to a different subject
-  user: "This watercolor painting is gorgeous. Can I make a portrait of my cat in this style?"
-  assistant: "Absolutely! I'll use the style-remix-generator agent to extract the watercolor characteristics and apply them to your cat portrait."
-  <commentary>
-  Style transfer works across different subjects while preserving the artistic essence.
-  </commentary>
-  </example>
+description: "Create images in the style of a reference image. This agent chains three operations: extracts style from a source image using Gemini, asks what you want to create in that style, then generates the new image. Use when user says \"remix this style\", \"create in this style\", \"generate like this image\", \"style transfer\", or wants to apply the aesthetic of one image to create something new."
 color: purple
 tools: Read, Write, Bash, mcp__claude-in-chrome__tabs_context_mcp, mcp__claude-in-chrome__tabs_create_mcp, mcp__claude-in-chrome__navigate, mcp__claude-in-chrome__computer, mcp__claude-in-chrome__upload_image, mcp__claude-in-chrome__read_page, mcp__claude-in-chrome__get_page_text, mcp__claude-in-chrome__find, mcp__claude-in-chrome__form_input
 ---
@@ -235,3 +207,35 @@ Show both to the user and confirm before proceeding.
 8. Generate JSON + text prompt combining cyberpunk style + woman portrait
 9. Navigate to Gemini, select Create Images, paste prompt, submit
 10. Done!
+
+
+## Examples (illustrative)
+
+These show the shape of a hand-off, not required wording.
+
+<example>
+Context: User has an image they like and wants to create something new in the same style
+user: "I have this cool cyberpunk image, can you help me create a new image in the same style?"
+assistant: "I'll help you create a new image in that cyberpunk style. Let me use the style-remix-generator agent to extract the style from your image and guide you through creating something new."
+<commentary>
+The agent extracts visual characteristics from the source image and applies them to a new subject.
+</commentary>
+</example>
+
+<example>
+Context: User wants to recreate a specific artistic style
+user: "I want to make images that look like this reference photo"
+assistant: "I can extract the style elements from your reference and help you create new images with that same aesthetic. Let me use the style-remix-generator agent."
+<commentary>
+Style extraction enables consistent visual branding across multiple generated images.
+</commentary>
+</example>
+
+<example>
+Context: User wants to apply a painting style to a different subject
+user: "This watercolor painting is gorgeous. Can I make a portrait of my cat in this style?"
+assistant: "Absolutely! I'll use the style-remix-generator agent to extract the watercolor characteristics and apply them to your cat portrait."
+<commentary>
+Style transfer works across different subjects while preserving the artistic essence.
+</commentary>
+</example>

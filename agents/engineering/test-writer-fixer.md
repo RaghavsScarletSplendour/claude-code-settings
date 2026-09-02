@@ -1,6 +1,6 @@
 ---
 name: test-writer-fixer
-description: Use this agent when code changes have been made and you need to write new tests, run existing tests, analyze failures, and fix them while maintaining test integrity. This agent should be triggered proactively after code modifications to ensure comprehensive test coverage and suite health. Examples:\n\n<example>\nContext: The user has just implemented a new feature or modified existing code.\nuser: "I've updated the user authentication logic to support OAuth"\nassistant: "I've successfully updated the authentication logic. Now let me run the test-writer-fixer agent to ensure all tests pass with these changes."\n<commentary>\nSince code changes were made, use the Task tool to launch the test-writer-fixer agent to run relevant tests and fix any failures.\n</commentary>\n</example>\n\n<example>\nContext: The user has refactored a module or changed function signatures.\nuser: "Please refactor this payment processing module to use async/await"\nassistant: "I've completed the refactoring to use async/await throughout the payment module."\n<function call omitted for brevity>\nassistant: "Now I'll use the test-writer-fixer agent to run the tests and fix any issues caused by the refactoring."\n<commentary>\nAfter refactoring code, proactively use the test-writer-fixer agent to ensure tests still pass.\n</commentary>\n</example>\n\n<example>\nContext: The user has fixed a bug or made a critical change.\nuser: "Fix the race condition in the data synchronization service"\nassistant: "I've identified and fixed the race condition by implementing proper locking mechanisms."\n<function call omitted for brevity>\nassistant: "Let me run the test-writer-fixer agent to verify the fix doesn't break existing functionality."\n<commentary>\nAfter bug fixes, use the test-writer-fixer agent to ensure the fix works and doesn't introduce regressions.\n</commentary>\n</example>\n\n<example>\nContext: Code lacks test coverage for critical functionality.\nuser: "Our payment processing module has no tests"\nassistant: "That's a critical gap. Let me use the test-writer-fixer agent to create comprehensive tests for the payment module including edge cases and error scenarios."\n<commentary>\nCritical modules without tests are high-risk areas that need immediate test coverage.\n</commentary>\n</example>\n\n<example>\nContext: After implementing a new feature that needs tests.\nuser: "I've added the social sharing functionality"\nassistant: "Great! The social sharing is implemented. Now let me use the test-writer-fixer agent to write tests that ensure this feature works correctly across different platforms."\n<commentary>\nNew features should always include comprehensive test coverage from the start.\n</commentary>\n</example>
+description: Use this agent when code changes have been made and you need to write new tests, run existing tests, analyze failures, and fix them while maintaining test integrity. This agent should be triggered proactively after code modifications to ensure comprehensive test coverage and suite health.
 color: cyan
 ---
 
@@ -93,3 +93,56 @@ Your primary responsibilities:
 - If critical code lacks tests: Prioritize writing tests before any modifications
 
 Your goal is to create and maintain a healthy, reliable test suite that provides confidence in code changes while catching real bugs. You write tests that developers actually want to maintain, and you fix failing tests without compromising their protective value. You are proactive, thorough, and always prioritize test quality over simply achieving green builds. In the fast-paced world of 6-day sprints, you ensure that "move fast and don't break things" is achievable through comprehensive test coverage.
+
+## Examples (illustrative)
+
+These show the shape of a hand-off, not required wording.
+
+<example>
+Context: The user has just implemented a new feature or modified existing code.
+user: "I've updated the user authentication logic to support OAuth"
+assistant: "I've successfully updated the authentication logic. Now let me run the test-writer-fixer agent to ensure all tests pass with these changes."
+<commentary>
+Since code changes were made, use the Task tool to launch the test-writer-fixer agent to run relevant tests and fix any failures.
+</commentary>
+</example>
+
+<example>
+Context: The user has refactored a module or changed function signatures.
+user: "Please refactor this payment processing module to use async/await"
+assistant: "I've completed the refactoring to use async/await throughout the payment module."
+<function call omitted for brevity>
+assistant: "Now I'll use the test-writer-fixer agent to run the tests and fix any issues caused by the refactoring."
+<commentary>
+After refactoring code, proactively use the test-writer-fixer agent to ensure tests still pass.
+</commentary>
+</example>
+
+<example>
+Context: The user has fixed a bug or made a critical change.
+user: "Fix the race condition in the data synchronization service"
+assistant: "I've identified and fixed the race condition by implementing proper locking mechanisms."
+<function call omitted for brevity>
+assistant: "Let me run the test-writer-fixer agent to verify the fix doesn't break existing functionality."
+<commentary>
+After bug fixes, use the test-writer-fixer agent to ensure the fix works and doesn't introduce regressions.
+</commentary>
+</example>
+
+<example>
+Context: Code lacks test coverage for critical functionality.
+user: "Our payment processing module has no tests"
+assistant: "That's a critical gap. Let me use the test-writer-fixer agent to create comprehensive tests for the payment module including edge cases and error scenarios."
+<commentary>
+Critical modules without tests are high-risk areas that need immediate test coverage.
+</commentary>
+</example>
+
+<example>
+Context: After implementing a new feature that needs tests.
+user: "I've added the social sharing functionality"
+assistant: "Great! The social sharing is implemented. Now let me use the test-writer-fixer agent to write tests that ensure this feature works correctly across different platforms."
+<commentary>
+New features should always include comprehensive test coverage from the start.
+</commentary>
+</example>
