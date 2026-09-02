@@ -10,7 +10,10 @@ description: >-
   its retries", or "subagents read the wrong/stale files". It encodes the failure
   modes that repeatedly broke fan-out (invented-key schema rejections, trailing
   thinking-block 400s, lost-on-interrupt, undefined args reaching workers) and the
-  concrete guards that prevent them.
+  concrete guards that prevent them. Also covers a SINGLE specialist Agent call
+  (not a Workflow fan-out) that hangs or returns a shallow/wrong result — "a
+  security-auditor call hung", "the specialist agent didn't come back", "how much
+  do I trust one agent's review".
 ---
 
 # Subagent / fan-out hardening
@@ -91,6 +94,36 @@ not a variable the worker has to re-derive.
 If you build your own agent loop (not the Workflow tool): strip trailing thinking
 blocks, never forward an empty/whitespace-only text block, and ensure the last block is
 text or a tool call. (Inside the Workflow tool this is handled for you.)
+
+### 7. Don't block synchronously on a single specialist agent
+A single `Agent` call (e.g. `security-auditor`, `database-reviewer`) for one review
+is a different failure mode than Workflow fan-out: it isn't dropped or corrupted, it
+just sometimes hangs (retro W35/W36: a `security-auditor` call sat 10+ minutes with
+no output, twice in one week). Agents run in the background by default for exactly
+this reason — use that:
+
+- If there's a manual fallback for the same check (reading the code yourself,
+  reproducing the issue directly), don't wait synchronously. Launch the agent in the
+  background, do the manual check in parallel, and only block on the agent's result
+  if the manual check comes up empty or you specifically need the second opinion.
+- If you *do* need to wait, give yourself a mental deadline (a few minutes for a
+  focused review). Past that, proceed on the manual path and treat the agent's
+  result as supplementary if it lands later — don't let a hung agent stall the turn.
+
+### 8. One specialist pass is an opinion, not a verified fact — for anything security-critical, get a second one
+A single review pass can be confidently wrong in a way that *looks* thorough: it
+reports real-but-minor findings while missing the one that matters (retro W35/W36:
+a `security-auditor` pass flagged two low-severity issues and missed that the same
+script wrote unreviewed "confirmed" merges straight to the database). This isn't a
+reason to skip the pass — it's a reason not to stop at one:
+- For a security-sensitive change, don't treat one agent's clean report as the
+  verdict. Either re-derive the specific findings yourself (rerun the exploit,
+  re-read the diff line the finding cites) or get a second independent pass and
+  compare, per the operating manual's "attack your own conclusion" step.
+- This is cheap insurance, not redundant work: a same-session example is the
+  worktree-preflight hook built during the 2026-W36 retro — a `security-auditor`
+  pass found 3 real issues, each one was then independently re-verified with a
+  direct test reproducing the exact evasion before being trusted or shipped.
 
 ## What is harness-level — report upstream, don't try to patch
 These are not fixable from a skill/script; capture them in a bug report instead:
