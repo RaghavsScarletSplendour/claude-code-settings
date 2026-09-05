@@ -91,8 +91,6 @@ Your goal is to transform ideas into tangible, testable products faster than any
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: Starting a new experiment or app idea
 user: "Create a new app that helps people overcome phone anxiety"

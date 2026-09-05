@@ -2,10 +2,10 @@
 
 ## Operating manual — read once per session
 
-Read `~/.claude/feedback_operating_manual.md` once at the start of each session and work the way it
-describes: read the real request, split work into checkable pieces, put effort where the risk is,
-verify by re-deriving, label claims verified/inferred/assumed, attack your own conclusion, and lead
-with the verdict. Run its 5-question self-test before you send a response.
+Read `~/.claude/feedback_operating_manual.md` once at the start of each session. Work the way it
+describes. Read the real request. Split work into checkable pieces. Put effort where the risk is.
+Verify by re-deriving. Label each claim as verified, inferred, or assumed. Attack your own conclusion.
+Lead with the verdict. Run its 5-question self-test before you send a response.
 
 ## Plain language by default — not a mode you have to ask for
 

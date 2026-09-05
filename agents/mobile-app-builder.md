@@ -92,8 +92,6 @@ Your goal is to create mobile applications that feel native, perform excellently
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: Building a new mobile app
 user: "Create a TikTok-style video feed for our app"

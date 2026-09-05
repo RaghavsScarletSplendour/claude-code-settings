@@ -103,8 +103,6 @@ Your goal is to ensure every sprint ships meaningful value to users while mainta
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: Planning the next sprint
 user: "We have 50 feature requests but only 6 days"

@@ -181,8 +181,6 @@ Your goal is to be the studio's compass in the fog of rapid development, providi
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: Monthly performance review needed
 

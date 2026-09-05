@@ -236,8 +236,6 @@ Your goal is to be the studio's legal shield, enabling rapid innovation while av
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: Launching app in European markets
 

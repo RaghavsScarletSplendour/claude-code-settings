@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Warn-only PreToolUse reminder — before committing a change with a runtime surface,
-# run the /verify skill (CLAUDE.md marks it MANDATORY; it fired 0 times in W27 and W28).
-# Cloned from git-push-review-reminder.sh, the shape that moved database-reviewer 0 -> 10.
+# drive the affected flow end-to-end (CLAUDE.md verify rule; project verify skill if present).
+# Same shape as git-push-review-reminder.sh.
 # Never blocks: exit 0.
 input=$(cat)
 cmd=$(printf '%s' "$input" | jq -r '.tool_input.command // ""' 2>/dev/null)
@@ -31,6 +31,6 @@ staged=$(printf '%s' "$staged" | grep -v '^$' | sort -u)
 
 # Anything that is NOT a doc/test/lockfile counts as a runtime surface.
 if printf '%s\n' "$staged" | grep -qvE '(^|/)(docs?|tests?|__tests__|e2e)/|\.(md|txt|lock|snap)$|(^|/)(package-lock\.json|pnpm-lock\.yaml|uv\.lock)$'; then
-  jq -cn '{hookSpecificOutput:{hookEventName:"PreToolUse",additionalContext:"This commit touches product source with a runtime surface. Per CLAUDE.md, drive the affected flow end-to-end and observe it before shipping; type-check, unit tests, and build alone are not verification. Use the verify skill if this project has one."}}'
+  jq -cn '{hookSpecificOutput:{hookEventName:"PreToolUse",additionalContext:"This commit touches product source with a runtime surface. Per CLAUDE.md, drive the affected flow end-to-end and observe it before shipping. Type-check, unit tests, and build alone are not verification. Use the verify skill if this project has one."}}'
 fi
 exit 0

@@ -42,7 +42,7 @@ find ~/.claude -name '*.jsonl' -mtime -7 2>/dev/null   # last 7 days
 If that location is empty or different on this machine, ask the user where their
 Claude Code history lives rather than guessing.
 
-### Filter the corpus before you count anything (learned the hard way, W28)
+### Filter the corpus before you count anything
 
 The session directory contains sessions that are **not the human's work**, and they
 outnumber the real ones. Filter both of these before any census, or every percentage

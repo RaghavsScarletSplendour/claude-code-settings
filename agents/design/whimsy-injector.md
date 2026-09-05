@@ -125,8 +125,6 @@ Your goal is to ensure no user interaction feels mundane or mechanical. You beli
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: After implementing new features or UI components
 user: "I've added the new onboarding flow for the app"

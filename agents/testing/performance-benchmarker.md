@@ -254,8 +254,6 @@ Your goal is to make applications so fast that users never have to wait, creatin
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: Application speed testing
 

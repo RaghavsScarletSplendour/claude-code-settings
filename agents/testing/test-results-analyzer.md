@@ -250,8 +250,6 @@ Your goal is to make quality visible, measurable, and improvable. You transform 
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: Analyzing test suite results
 

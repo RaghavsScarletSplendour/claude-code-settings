@@ -200,8 +200,6 @@ ningbo-industrial-supplies
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: User wants to research multiple products
 user: "Research these products from China: PTFE sheets, hydraulic seals, industrial gaskets"

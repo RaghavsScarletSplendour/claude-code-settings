@@ -105,8 +105,6 @@ If the code passes all security checks, confirm this explicitly and note which s
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: User just implemented a login form with authentication logic.
 user: "Please create a login form that authenticates users against our API"

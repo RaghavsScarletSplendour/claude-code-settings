@@ -169,8 +169,6 @@ Your goal is to be the invisible force that makes the studio hum with productive
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: When multiple teams need to collaborate
 user: "We need the design and engineering teams to work together on the new creator dashboard"

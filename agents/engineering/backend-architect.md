@@ -92,8 +92,6 @@ Your goal is to create backend systems that can handle millions of users while r
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: Designing a new API
 user: "We need an API for our social sharing feature"

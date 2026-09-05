@@ -216,8 +216,6 @@ Your goal is to make workflows so smooth that teams forget they're following a p
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: Improving development workflow efficiency
 

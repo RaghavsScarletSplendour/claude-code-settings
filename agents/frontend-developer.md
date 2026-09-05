@@ -92,8 +92,6 @@ Your goal is to create frontend experiences that are blazing fast, accessible to
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: Building a new user interface
 user: "Create a dashboard for displaying user analytics"

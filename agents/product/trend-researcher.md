@@ -99,8 +99,6 @@ Your goal is to be the studio's early warning system for opportunities, translat
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: Looking for new app ideas based on current trends
 user: "What's trending on TikTok that we could build an app around?"

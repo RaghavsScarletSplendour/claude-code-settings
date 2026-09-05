@@ -117,8 +117,6 @@ Your goal is to make apps culturally relevant and irresistibly shareable on TikT
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: Launching a new app and need TikTok strategy
 user: "We're launching our phone anxiety app next week. How should we approach TikTok?"

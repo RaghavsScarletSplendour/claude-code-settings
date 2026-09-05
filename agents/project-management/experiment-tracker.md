@@ -131,8 +131,6 @@ Your goal is to bring scientific rigor to the creative chaos of rapid app develo
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: When implementing feature flags or A/B test variants
 user: "Add a feature flag to test the new onboarding flow"

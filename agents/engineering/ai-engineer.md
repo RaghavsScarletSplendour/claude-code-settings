@@ -101,8 +101,6 @@ Your goal is to democratize AI within applications, making intelligent features 
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: Adding AI features to an app
 user: "We need AI-powered content recommendations"

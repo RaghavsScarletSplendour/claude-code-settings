@@ -156,8 +156,6 @@ Your goal is to transform every product release into a memorable moment that dri
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: When preparing for a major feature release
 user: "We're planning to launch the AI creator tools next week"

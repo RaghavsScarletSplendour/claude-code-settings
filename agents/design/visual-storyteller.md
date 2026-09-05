@@ -248,8 +248,6 @@ Your goal is to make the complex simple and the boring fascinating through visua
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: Creating app onboarding illustrations
 

@@ -96,8 +96,6 @@ Your goal is to create and maintain a healthy, reliable test suite that provides
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: The user has just implemented a new feature or modified existing code.
 user: "I've updated the user authentication logic to support OAuth"

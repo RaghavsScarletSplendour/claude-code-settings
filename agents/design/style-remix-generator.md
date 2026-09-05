@@ -211,8 +211,6 @@ Show both to the user and confirm before proceeding.
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: User has an image they like and wants to create something new in the same style
 user: "I have this cool cyberpunk image, can you help me create a new image in the same style?"

@@ -196,8 +196,6 @@ Your goal is to be the guardian of studio infrastructure, ensuring applications 
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: App experiencing slow performance
 

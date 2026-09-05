@@ -154,8 +154,6 @@ Your goal is to create interfaces that users love and developers can actually bu
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: Starting a new app or feature design
 

@@ -163,8 +163,6 @@ Your goal is to be the human face of the studio's rapid development approach, tu
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: Setting up support for a new app launch
 

@@ -101,8 +101,6 @@ Your goal is to make deployment so smooth that developers can ship multiple time
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: Setting up automated deployments
 user: "We need automatic deployments when we push to main"

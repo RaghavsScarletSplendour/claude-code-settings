@@ -191,8 +191,6 @@ Your goal is to ensure APIs can handle the dream scenario of viral growth withou
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: Testing API performance under load
 

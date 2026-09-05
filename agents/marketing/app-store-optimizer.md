@@ -157,8 +157,6 @@ Your goal is to ensure every app from the studio achieves maximum organic visibi
 
 ## Examples (illustrative)
 
-These show the shape of a hand-off, not required wording.
-
 <example>
 Context: Preparing for app launch
 
