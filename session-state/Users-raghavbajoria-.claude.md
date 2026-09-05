@@ -1,61 +1,93 @@
 ---
-updated: 2026-09-03T09:00:00Z
+updated: 2026-09-05T21:10:00Z
 project: /Users/raghavbajoria/.claude
 ---
 
 ## Last done
-Ran `/code-review` (8 finder agents, high effort) on the two prompt-audit commits
-(7b01e6a, 91c2073). 10 confirmed findings. Fixed and pushed the one the user asked
-for:
+**Prompt-audit code-review follow-up (this session, 2026-09-05, commit 6c7e0e2):**
+fixed the last real findings from `/code-review` of the prompt-audit commits —
+CLAUDE.md manual paragraph split into short sentences; verify-reminder.sh stale
+MANDATORY/W27-W28 comment rewritten and its emitted text split at the semicolon;
+weekly-retro heading lost its `(W28)`; the duplicated one-line disclaimer removed
+from 33 agent Examples sections. Left on purpose: SubagentStart manual injection
+(subagents have no prior context), CLAUDE.md-vs-hook verify wording (rule + its
+reminder, not drift), 10-line rate-limiting.md (one-file-per-section consistency).
+All 10 review findings are now closed. Earlier in the same thread: PROACTIVELY
+restored on 4 agents (55efa8b); PotionLabs autoMode block removed from global
+settings.json (ccc001a, user-approved).
 
-- **Fixed (55efa8b):** the M1 description cleanup had mechanically stripped
-  `PROACTIVELY` from 4 agent descriptions (whimsy-injector, experiment-tracker,
-  project-shipper, studio-producer) — the audit guide explicitly says
-  trigger/routing text may keep calibrated urgency, so this was cut in error.
-  whimsy-injector had also lost its whole auto-trigger clause; restored.
+**Concurrent session (stale-branch cleanup) — kept verbatim below:**
+Stale-branch cleanup across two projects, run from worktree
+`claude/stale-branch-cleanup-3c921d`.
 
-**Fixed (ccc001a):** removed the PotionLabs-specific `autoMode` block
-  (soft_deny rules, environment facts naming one project's org/repo/production
-  host) from the global `settings.json`. It had ridden into commit 7b01e6a as
-  pre-existing uncommitted state from a concurrent session and did not belong
-  in a file shared by every project. Asked the user first since another live
-  session could have been relying on it for Auto Mode; user confirmed removal.
-  Note: if that other PotionLabs session still needs this config, it will need
-  to be re-created, ideally at project scope if the harness supports that
-  (no existing project `.claude/settings.json` on this machine currently has
-  an `autoMode` key, so project-scoped placement is unconfirmed).
+**`.claude` (this settings project):** deleted `test/debug-29205` (identical to
+main) and its folder at `/private/tmp/jdj-debug-29205`. Nothing else to do here.
 
-Still open, not yet actioned (reported to user, no fix requested yet):
-- `SubagentStart` still re-injects the full operating manual on every subagent
-  spawn (kept on purpose — subagents lack the session's prior context — but
-  CLAUDE.md's "read once per session" wording overstates the fix's scope).
-- `skills/weekly-retro/SKILL.md:44` section heading still has a `(W28)` citation
-  the body cleanup missed.
-- `hooks/verify-reminder.sh:3` header comment is stale (says MANDATORY, cites
-  W27/W28 firing rate) vs. the hook's own current emitted text at line 34.
-- Two ASD-STE100 violations in text this session wrote: `CLAUDE.md:5-8`
-  (one ~45-word/six-idea sentence) and `hooks/verify-reminder.sh:34`
-  (~21-word sentence via semicolon).
-- CLAUDE.md's verify bullet and verify-reminder.sh's text restate the same
-  guidance independently (drift risk).
-- The "These show the shape of a hand-off..." disclaimer is duplicated
-  verbatim across all 33 rewritten agent files.
-- `skills/backend-patterns/references/rate-limiting.md` is only 10 lines,
-  smaller than its 47-114-line siblings.
+**`jdjones-platform`:** classified ~330 saved branches by comparing their code
+directly against the live `main` and `staging` branches (not by save history,
+which misses squash-merges). Deleted, with user approval at each step:
+- 95 branches on this Mac (all confirmed identical to `main` or `staging`,
+  zero real work lost).
+- 30 branches on the shared GitHub server (all confirmed identical to `main`
+  — user ran the delete command themselves after a safety block on this side;
+  verified after with a direct GitHub check, not just local cache).
+
+**Deliberately left untouched, still waiting on the user:**
+- 9 server branches that shipped to `staging` but not yet `main` (real
+  in-progress work): feat/hr-interview-notes-and-tab, feat/hr-resume-swiper,
+  feat/hr-sept-four-issues, feat/rfq-body-only-enquiry-lines,
+  feat/rfq-conversation-view, feat/rfq-customer-name-aliases,
+  feat/rfq-quote-search-queue, fix/hr-drop-department-location-columns,
+  preserve/staging-hr-20260825.
+- 1 server branch that changed mid-check because another live session was
+  actively editing it: tech2/jdj-167-failed-send-visibility. Do not delete
+  without rechecking fresh.
+- 63 branches on this Mac and 113 on the server that don't match main or
+  staging — real content, no open pull request tracking them. Needs a human
+  look, not a blanket delete. Full lists were sent to the user as files
+  (V3_review_local.txt, V3_review_remote.txt) during this session.
+- 19 branches on this Mac that are safe-looking but still open in a folder on
+  disk (full path list was produced this session — see FINAL_blocked.txt /
+  the "blocked by worktree" list). Close the folder before deleting.
+
+**Important operational finding, worth remembering for next time:** a
+background ("run in background, check later") shell command in this harness
+can silently never execute at all, while still showing as "running"
+indefinitely — confirmed via `advisor`, not guessed. The tell: a `cat`
+process appears as a *direct child* of the background wrapper shell itself
+(not of git), identical across unrelated script variants, and the target
+output file stays at 0 bytes. Foreground commands (including the same exact
+git calls, chunked into small batches) work fine and finish in about a
+second. Fix: for anything after this, prefer synchronous foreground calls in
+small batches over `run_in_background: true` when checking many git
+branches — don't re-diagnose this from scratch.
+
+Also: `jdjones-platform` had another live Claude Code session actively
+merging PRs and deleting branches throughout this entire session (confirmed
+via `gh pr view` and live `ps` process inspection). Re-fetched `origin/main`
+and `origin/staging` immediately before every delete step rather than trusting
+an earlier snapshot — this caught at least one branch
+(tech2/jdj-167-failed-send-visibility) changing state mid-session.
+
 ## In flight
-Nothing.
+Nothing actively running. All background jobs from this session were killed
+cleanly; none left orphaned.
 
 ## Next
-1. Wait for the user to say which of the 7 remaining code-review findings above
-   to fix, if any — do not act on them unprompted.
-2. If the PotionLabs concurrent session (or any Auto Mode setup in that
-   project) breaks because its trust/deny config is gone, that is this fix —
-   point back here, don't re-add it to the global file.
-2. Re-run `/claude-api prompt-audit` at the next model release; flagged-only items
-   (L2) are re-checked then, not now.
-2. Watch the first few sessions after these hooks change: replies should still lead
-   with the verdict. If they slip, add one SessionStart reminder, not a per-turn one.
-3. Carried over: `fix/pr-audit-staging-ci-signal` branch on jdjones-platform has no PR.
+1. If the user wants to keep going on jdjones-platform: decide what to do
+   with the 9 staging-only branches, the 1 changed-mid-check branch, and the
+   176 "needs a human look" branches (63 local + 113 remote). None of these
+   should be blanket-deleted — they need per-branch judgment or an open PR
+   check.
+2. The 19 worktree-blocked branches can be revisited once those folders are
+   closed (via `/close-worktree` or equivalent), if the user wants to clean
+   those up too.
+3. `.claude` project: nothing queued. Re-run `/claude-api prompt-audit` at the
+   next model release.
 
 ## Blockers
-None.
+None outstanding. One classifier block was hit and correctly respected this
+session: `git push origin --delete` on the shared server was blocked by the
+auto-mode safety classifier even after explicit user approval of the plan —
+had the user run it themselves from their own terminal instead of trying to
+route around the block.
